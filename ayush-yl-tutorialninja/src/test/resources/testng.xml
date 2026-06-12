@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TutorialNinjaSuite" parallel="classes" thread-count="2" verbose="1">
+
+    <listeners>
+        <listener class-name="utils.listener$TestListener"/>
+        <listener class-name="utils.listener$RetryTransformer"/>
+    </listeners>
+
+    <test name="LoginAndSearchTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.logintest"/>
+        </classes>
+    </test>
+
+    <test name="CartAndCheckoutTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.e2etest"/>
+        </classes>
+    </test>
+
+</suite>

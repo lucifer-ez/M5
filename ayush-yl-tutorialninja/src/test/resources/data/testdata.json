@@ -1,0 +1,23 @@
+{
+  "login": [
+    { "email": "qaautomation_valid@mailinator.com", "password": "Test@1234", "expectedSuccess": true },
+    { "email": "invalid_user@mailinator.com", "password": "WrongPass123", "expectedSuccess": false },
+    { "email": "qaautomation_valid@mailinator.com", "password": "wrongPassword", "expectedSuccess": false },
+    { "email": "", "password": "", "expectedSuccess": false }
+  ],
+  "search": [
+    { "productName": "MacBook", "shouldExist": true },
+    { "productName": "iPhone", "shouldExist": true },
+    { "productName": "Apple Cinema 30\"", "shouldExist": true },
+    { "productName": "NonExistentProductXYZ123", "shouldExist": false }
+  ],
+  "cartProducts": [
+    { "productName": "MacBook" },
+    { "productName": "iPhone" }
+  ],
+  "validUser": {
+    "email": "qaautomation_valid@mailinator.com",
+    "password": "Test@1234"
+  },
+  "checkoutProduct": "MacBook"
+}

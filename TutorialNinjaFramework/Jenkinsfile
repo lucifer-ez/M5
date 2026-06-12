@@ -1,0 +1,39 @@
+pipeline {
+    agent { docker { image 'maven:3.9.6-eclipse-temurin-21' } }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t automation-suite .'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'docker run --rm automation-suite'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'target/surefire-reports/**/*.xml'
+            publishHTML(target: [
+                reportDir : 'target/extent-reports',
+                reportFiles: 'ExtentReport.html',
+                reportName : 'Extent HTML Report',
+                allowMissing: true,
+                keepAll: true
+            ])
+        }
+        failure {
+            echo 'Tests failed — check the Extent HTML report above.'
+        }
+    }
+}
